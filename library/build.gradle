@@ -1,17 +1,19 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 28
     buildToolsVersion "29.0.0"
+
+
     defaultConfig {
-        applicationId "io.iftech.android.slidelayout"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -21,9 +23,6 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.core:core-ktx:1.0.2'
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation project(':library')
 }

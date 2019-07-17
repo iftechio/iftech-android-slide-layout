@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="WidgetSlideLayout">
+        <attr name="widget_slide_overlay_distance" format="dimension" />
+        <attr name="widget_disable_slider_refresh" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="WidgetMinVerticalMarginFrameLayout">
+        <attr name="widget_min_vertical_margin" format="dimension" />
+    </declare-styleable>
+</resources>

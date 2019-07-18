@@ -9,24 +9,24 @@ A layout for managing two list in a single page
 使用Slide的页面布局结构如下：
 ```xml
 <io.iftech.android.library.slide.SlideLayout>
-        <!-- header -->
-        <io.iftech.android.library.slide.MinVerticalMarginFrameLayout>
-            <androidx.core.widget.NestedScrollView>
-                <!-- header content here -->
-            </androidx.core.widget.NestedScrollView>
-        </io.iftech.android.library.slide.MinVerticalMarginFrameLayout>
-        <!-- slider -->
-        <io.iftech.android.library.slide.MinVerticalMarginFrameLayout>
-            <LinearLayout>
-                <io.iftech.android.library.slide.SlideBarLayout>
-                    <!-- slide bar content here -->
-                </io.iftech.android.library.slide.SlideBarLayout>
-                <androidx.recyclerview.widget.RecyclerView/>
-            </LinearLayout>
-        </io.iftech.android.library.slide.MinVerticalMarginFrameLayout>
-        <!-- refresh -->
-        <io.iftech.android.library.refresh.RefreshViewLayout/>
-    </io.iftech.android.library.slide.SlideLayout>
+    <!-- header -->
+    <io.iftech.android.library.slide.MinVerticalMarginFrameLayout>
+        <androidx.core.widget.NestedScrollView>
+            <!-- header content here -->
+        </androidx.core.widget.NestedScrollView>
+    </io.iftech.android.library.slide.MinVerticalMarginFrameLayout>
+    <!-- slider -->
+    <io.iftech.android.library.slide.MinVerticalMarginFrameLayout>
+        <LinearLayout>
+            <io.iftech.android.library.slide.SlideBarLayout>
+                <!-- slide bar content here -->
+            </io.iftech.android.library.slide.SlideBarLayout>
+            <androidx.recyclerview.widget.RecyclerView/>
+        </LinearLayout>
+    </io.iftech.android.library.slide.MinVerticalMarginFrameLayout>
+    <!-- refresh -->
+    <io.iftech.android.library.refresh.RefreshViewLayout/>
+</io.iftech.android.library.slide.SlideLayout>
 ```
 代码中需要指定 SlideLayout 结构中 Header 和 Slider 中各自实现 NestedScrollingChild 接口的 View。具体方法如下:
 

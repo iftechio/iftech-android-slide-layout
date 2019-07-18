@@ -14,17 +14,17 @@ import androidx.core.view.NestedScrollingParent2
 import androidx.core.view.NestedScrollingParentHelper
 import androidx.core.view.ViewCompat
 import androidx.core.view.isInvisible
-import io.iftech.android.library.cancel
-import io.iftech.android.library.refresh.RefreshViewLayout
 import io.iftech.android.library.R
+import io.iftech.android.library.cancel
 import io.iftech.android.library.doOnUpdate
+import io.iftech.android.library.refresh.RefreshViewLayout
 import io.iftech.android.library.useAttrs
 import java.lang.ref.WeakReference
 import kotlin.math.abs
 
 class SlideLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
-    FrameLayout(context, attrs, defStyleAttr),
-    NestedScrollingParent2 {
+        FrameLayout(context, attrs, defStyleAttr),
+        NestedScrollingParent2 {
 
     private var headerTop = 0
     private var sliderTop = 0
@@ -43,7 +43,7 @@ class SlideLayout @JvmOverloads constructor(context: Context, attrs: AttributeSe
     private var lastGesture: SlideGesture? = null
 
     private val refreshPresenter = RefreshPresenter({ refreshView() as? RefreshViewLayout },
-        { updateHeaderSliderForRefresh() })
+            { updateHeaderSliderForRefresh() })
 
     private var sliderOffsetHeaderWhenRefresh = 0
 
@@ -103,7 +103,7 @@ class SlideLayout @JvmOverloads constructor(context: Context, attrs: AttributeSe
     private fun headerMinHeight() = headerView()?.run { minimumHeight }
 
     private fun headerHeight() =
-        headerView()?.let { header -> (header.height - overlapDistance).coerceAtLeast(header.minimumHeight) }
+            headerView()?.let { header -> (header.height - overlapDistance).coerceAtLeast(header.minimumHeight) }
 
     private fun headerRange() = headerView()?.run {
         val min = headerMinHeight()!!
@@ -118,8 +118,8 @@ class SlideLayout @JvmOverloads constructor(context: Context, attrs: AttributeSe
     private fun headerMeasureHeight(): Int? {
         return headerView()?.let { header ->
             header.measure(
-                MeasureSpec.makeMeasureSpec(measuredWidth, MeasureSpec.EXACTLY),
-                MeasureSpec.makeMeasureSpec(measuredHeight, MeasureSpec.AT_MOST)
+                    MeasureSpec.makeMeasureSpec(measuredWidth, MeasureSpec.EXACTLY),
+                    MeasureSpec.makeMeasureSpec(measuredHeight, MeasureSpec.AT_MOST)
             )
             (header.measuredHeight - overlapDistance).coerceAtLeast(header.minimumHeight)
         }
@@ -167,7 +167,7 @@ class SlideLayout @JvmOverloads constructor(context: Context, attrs: AttributeSe
                 }
                 result ?: run {
                     if (targetView?.let { it.isSlideChildTypeHeader() && it.canScrollVertically(-1).not() } == true
-                        && pullDown) {
+                            && pullDown) {
                         SlideGesture.REFRESH
                     } else {
                         SlideGesture.SLIDE
@@ -233,8 +233,8 @@ class SlideLayout @JvmOverloads constructor(context: Context, attrs: AttributeSe
     private fun updateHeaderSliderForRefresh() {
         val headerTopForRefresh = headerTop + refreshPresenter.height
         val sliderTopForRefresh = sliderOffsetHeaderWhenRefresh.takeIf { it > 0 }
-            ?.let { it + headerTopForRefresh }
-            ?: sliderTop
+                ?.let { it + headerTopForRefresh }
+                ?: sliderTop
         headerView()?.apply { offsetTopAndBottom(headerTopForRefresh - top) }
         sliderView()?.apply { offsetTopAndBottom(sliderTopForRefresh - top) }
     }
@@ -252,7 +252,7 @@ class SlideLayout @JvmOverloads constructor(context: Context, attrs: AttributeSe
             changeHeaderTop(headerTop)
             val curHeaderHeight = headerHeight()
             val overrideSliderTop =
-                if (lastGesture == SlideGesture.SCROLL && lastHeaderHeight != curHeaderHeight) curHeaderHeight else null
+                    if (lastGesture == SlideGesture.SCROLL && lastHeaderHeight != curHeaderHeight) curHeaderHeight else null
             changeSliderTop(overrideSliderTop ?: sliderTop)
         }
     }
@@ -317,7 +317,7 @@ class SlideLayout @JvmOverloads constructor(context: Context, attrs: AttributeSe
             }
         }
         handlingNonTouchChildRef?.get()?.takeIf { type == ViewCompat.TYPE_NON_TOUCH && it == target }
-            ?.apply { handlingNonTouchChildRef = null }
+                ?.apply { handlingNonTouchChildRef = null }
     }
 
     override fun onNestedPreScroll(target: View, dx: Int, dy: Int, consumed: IntArray, type: Int) {
@@ -354,12 +354,12 @@ class SlideLayout @JvmOverloads constructor(context: Context, attrs: AttributeSe
     }
 
     override fun onNestedScroll(
-        target: View,
-        dxConsumed: Int,
-        dyConsumed: Int,
-        dxUnconsumed: Int,
-        dyUnconsumed: Int,
-        type: Int
+            target: View,
+            dxConsumed: Int,
+            dyConsumed: Int,
+            dxUnconsumed: Int,
+            dyUnconsumed: Int,
+            type: Int
     ) {
         var remainingDy = dyUnconsumed
         var gesture = getGesture(target, remainingDy)
@@ -377,7 +377,7 @@ class SlideLayout @JvmOverloads constructor(context: Context, attrs: AttributeSe
                 }
                 SlideGesture.SLIDE -> {
                     if ((target.isSlideChildTypeBar() || target.isSlideChildTypeSlider())
-                        && type == ViewCompat.TYPE_TOUCH
+                            && type == ViewCompat.TYPE_TOUCH
                     ) {
                         consumedDy = onScrollSlider(remainingDy)
                     }
@@ -403,8 +403,8 @@ class SlideLayout @JvmOverloads constructor(context: Context, attrs: AttributeSe
 
     override fun onNestedPreFling(target: View, velocityX: Float, velocityY: Float): Boolean {
         if (getGesture(target) == SlideGesture.SLIDE && (target.isSlideChildTypeBar() || isNotExpandSliderScrolling(
-                target
-            ))
+                        target
+                ))
         ) {
             this.sliderVelocityY = velocityY
             return true
@@ -546,7 +546,7 @@ class SlideLayout @JvmOverloads constructor(context: Context, attrs: AttributeSe
         }
     }
 
-    fun setOnRefreshListener(listener: (Boolean, Boolean) -> Unit) {
+    fun setOnRefreshListener(listener: (byPull: Boolean, isSliderExpand: Boolean) -> Unit) {
         refreshPresenter.setOnRefreshListener {
             listener(it, isSliderExpanded())
         }
@@ -556,17 +556,21 @@ class SlideLayout @JvmOverloads constructor(context: Context, attrs: AttributeSe
         refreshPresenter.finishRefresh()
     }
 
-    fun doOnHeaderUpdate(listener: (Int) -> Unit) {
+    fun refresh() {
+        refreshPresenter.refresh()
+    }
+
+    fun doOnHeaderUpdate(listener: (headerTop: Int) -> Unit) {
         this.onHeaderUpdateListener = listener
         listener(headerTop)
     }
 
-    fun doOnSliderExpandChange(listener: (Boolean) -> Unit) {
+    fun doOnSliderExpandChange(listener: (expand: Boolean) -> Unit) {
         this.onSliderExpandChangeListener = listener
         listener(sliderExpand)
     }
 
-    fun doOnSliderOffsetChange(listener: (Int) -> Unit) {
+    fun doOnSliderOffsetChange(listener: (sliderTop: Int) -> Unit) {
         this.onSliderOffsetChangeListener = listener
     }
 
@@ -641,12 +645,12 @@ class SlideLayout @JvmOverloads constructor(context: Context, attrs: AttributeSe
         return getGesture() == SlideGesture.SLIDE && headerHeight() == sliderTop
     }
 
-    fun doOnHeaderVisibleRangeChange(listener: (IntRange) -> Unit) {
+    fun doOnHeaderVisibleRangeChange(listener: (headerVisibleRange: IntRange) -> Unit) {
         this.onHeaderVisibleRangeChangeListener = listener
         dispatchHeaderVisibleRangeChange(true)
     }
 
-    fun setOffset(offset: Int) {
+    fun setRefreshOffset(offset: Int) {
         refreshPresenter.setOffset(offset)
     }
 

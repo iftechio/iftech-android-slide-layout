@@ -25,7 +25,7 @@ class DebugSlideActivity : AppCompatActivity() {
         fillSlider()
         layHeader.minimumHeight = dip(55)
         laySlider.setMinVerticalMargin(layHeader.minimumHeight)
-        laySlide.setOffset(layHeader.minimumHeight)
+        laySlide.setRefreshOffset(layHeader.minimumHeight)
         laySlide.expandHeader()
         layRefresh.refreshInterface = MyRefreshViewImpl(this)
         laySlide.apply {

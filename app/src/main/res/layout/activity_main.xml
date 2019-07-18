@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:title="Debug SlideLayout" />
+
+    <Button
+        android:id="@+id/btnDebugScroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="header 没超过屏幕高度" />
+
+    <Button
+        android:id="@+id/btnDebugSlide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="header 超过屏幕高度" />
+
+</LinearLayout>

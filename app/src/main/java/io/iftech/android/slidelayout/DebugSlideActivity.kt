@@ -7,12 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.iftech.android.library.dip
 import io.iftech.android.library.slide.configSlideChildTypeHeader
 import io.iftech.android.library.slide.configSlideChildTypeSlider
 import kotlinx.android.synthetic.main.activity_debug_slide.*
+import kotlinx.android.synthetic.main.layout_debug_slide_header.*
 import kotlinx.android.synthetic.main.list_item_debug_slide_slider.view.*
 
 class DebugSlideActivity : AppCompatActivity() {
@@ -24,11 +26,22 @@ class DebugSlideActivity : AppCompatActivity() {
         layHeader.minimumHeight = dip(55)
         laySlider.setMinVerticalMargin(layHeader.minimumHeight)
         laySlide.setOffset(layHeader.minimumHeight)
+        laySlide.expandHeader()
         layRefresh.refreshInterface = MyRefreshViewImpl(this)
+        laySlide.apply {
+            setOnRefreshListener { _, _ ->
+                postDelayed({
+                    finishRefresh()
+                }, 1_000)
+            }
+        }
     }
 
     private fun setupHeader() {
         nestedScrollView.configSlideChildTypeHeader()
+        val debugScroll = intent.getStringExtra(DEBUG_TYPE) == DEBUG_TYPE_SCROLL
+        ivHeaderPic2.isVisible = debugScroll.not()
+        tvHeaderContent2.isVisible = debugScroll.not()
     }
 
     private fun fillSlider() {
@@ -59,5 +72,11 @@ class DebugSlideActivity : AppCompatActivity() {
                     if (pos == 0) 0 else itemView.context.dip(10)
             itemView.tvTitle.text = "This is ${pos + 1} title."
         }
+    }
+
+    companion object {
+        const val DEBUG_TYPE = "debug_type"
+        const val DEBUG_TYPE_SCROLL = "scroll"
+        const val DEBUG_TYPE_SLIDE = "slide"
     }
 }

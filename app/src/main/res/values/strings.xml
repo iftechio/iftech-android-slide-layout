@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">SlideLayout</string>
     <string name="debug_slide_header_title">NestedScrolling</string>
-    <string name="debug_slide_header_description">
+    <string name="debug_slide_header_description_short">
+        This interface should be implemented by View subclasses that wish to support dispatching nested scrolling operations to a cooperating parent ViewGroup.
+    </string>
+    <string name="debug_slide_header_description_long">
         This interface should be implemented by View subclasses that wish to support dispatching nested scrolling operations to a cooperating parent ViewGroup.\n
         Classes implementing this interface should create a final instance of a NestedScrollingChildHelper as a field and delegate any View methods to the NestedScrollingChildHelper methods of the same signature.
         Views invoking nested scrolling functionality should always do so from the relevant ViewCompat, ViewGroupCompat or ViewParentCompat compatibility shim static methods. This ensures interoperability with nested scrolling views on Android 5.0 Lollipop and newer.

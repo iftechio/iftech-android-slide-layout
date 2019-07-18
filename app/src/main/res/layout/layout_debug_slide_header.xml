@@ -25,21 +25,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:lineSpacingExtra="5sp"
-        android:text="@string/debug_slide_header_description"
+        android:text="@string/debug_slide_header_description_short"
         android:textSize="16sp" />
 
     <ImageView
+        android:id="@+id/ivHeaderPic2"
         android:layout_width="300dp"
         android:layout_height="150dp"
         android:layout_marginTop="20dp"
         android:src="#03a9f4" />
 
     <TextView
+        android:id="@+id/tvHeaderContent2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:lineSpacingExtra="5sp"
-        android:text="@string/debug_slide_header_description"
+        android:text="@string/debug_slide_header_description_long"
         android:textSize="16sp" />
 
 </LinearLayout>

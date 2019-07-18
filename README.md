@@ -4,6 +4,9 @@ A layout for managing two list in a single page
 ### Release
 `TODO`
 
+### 实现原理
+[SlideLayout 双列表页面实现](https://github.com/tuesda/blog/blob/master/android/view/20190718_slidelayout_double_list/SlideLayout%20%E5%8F%8C%E5%88%97%E8%A1%A8%E9%A1%B5%E9%9D%A2%E5%AE%9E%E7%8E%B0.md)
+
 ### Usage
 
 使用Slide的页面布局结构如下：
@@ -36,7 +39,7 @@ silderNestedScrollingChildImplView.configSlideChildTypeSlider()
 ```
 除了上面的还有一些配置项需要设置下:
 
-1. Header 最小高度，用于指定当 Header 被折叠时需要显示的高度，这个值一般和 actionBar 一致。
+1. Header 最小高度，用于指定当 Header 被折叠时需要显示的高度，这个值一般和 ActionBar 高度一致。
     ```kotlin
     layHeader.minimumHeight = headerMinHeight
     ```

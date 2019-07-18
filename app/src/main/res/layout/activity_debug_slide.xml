@@ -40,7 +40,7 @@
                     android:id="@+id/laySlideBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#ffffff"
+                    android:background="#e4583e"
                     android:minHeight="44dp">
 
                     <TextView

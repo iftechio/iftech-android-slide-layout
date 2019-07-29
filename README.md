@@ -91,4 +91,4 @@ layRefresh.refreshInterface = MyRefreshViewImpl(this)
     
 ### License
 
-BSD  
+BSD <http://www.linfo.org/bsdlicense.html> 

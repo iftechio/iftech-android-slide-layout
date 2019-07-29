@@ -87,4 +87,8 @@ layRefresh.refreshInterface = MyRefreshViewImpl(this)
     设置刷新动画展示区域的起始位置，取值为竖向坐标。
 * xml 属性
     * `widget_slide_overlay_distance` 表示 Header 和 Slider 重叠距离。
-    * `widget_disable_slider_refresh` 表示是否禁用 slider 刷新，未禁用时当 Header 被折叠，不展开 Header 即可触发下拉刷新并展示刷新动画。 
+    * `widget_disable_slider_refresh` 表示是否禁用 slider 刷新，未禁用时当 Header 被折叠，不展开 Header 即可触发下拉刷新并展示刷新动画。
+    
+### License
+
+BSD  
